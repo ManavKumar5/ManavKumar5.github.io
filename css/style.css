@@ -8545,8 +8545,17 @@ h1, h2, h3, h4, h5,
           line-height: 1.2;
           font-weight: 800; }
           .owl-carousel.home-slider .slider-item .slider-text h1 span {
+            font-family: 'Orbitron', sans-serif;
             font-weight: 800;
-            color: #ffbd39; }
+            color: #0ff;
+            text-shadow:
+            0 0 1px #0ff,
+            0 0 2px #0cf,
+            0 0 4px #09f;
+            animation: neonPulse 2s ease-in-out infinite;
+            /* text-transform: uppercase; */
+          }
+             
           @media (max-width: 991.98px) {
             .owl-carousel.home-slider .slider-item .slider-text h1 {
               color: #fff;
