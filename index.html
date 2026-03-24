@@ -21,14 +21,103 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 
 
 <style>
 
+
 /*======================================
 //--//-->   ABOUT
 ======================================*/
+  /* Custom cursor */
+    #custom-cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(0, 180, 255, 0.8);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s, height 0.2s, background 0.2s;
+        mix-blend-mode: difference;
+    }
+    
+    #custom-cursor.hover {
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 180, 255, 0.1);
+        border-color: #00b4ff;
+    }
+    
+    /* Smooth scroll */
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    /* Enhanced project cards */
+    .project-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .project-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(0, 180, 255, 0.1), transparent);
+        transition: left 0.5s;
+    }
+    
+    .project-card:hover::before {
+        left: 100%;
+    }
+    
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Enhanced buttons */
+    .btn {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 180, 255, 0.3);
+    }
+    
+    /* Fade-in animations */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Navigation enhancement */
+    .navbar {
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.95) !important;
+    }
+    
+    .dark-mode .navbar {
+        background: rgba(17, 24, 39, 0.95) !important;
+    }
+
 
 .about-mf .box-shadow-full {
   padding-top: 4rem;
@@ -68,6 +157,7 @@
   animation: typing 3s steps(20, end) infinite;
 }
 
+
 #typing-animation:before {
   content: "";
   /* position: absolute; */
@@ -78,7 +168,90 @@
   background-color: #ccc;
   animation: typing-cursor 0.5s ease-in-out infinite;
 }
+/* ===== Enhanced Animations ===== */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
 
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* ===== Particle Canvas ===== */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* ===== Enhanced Navigation ===== */
+.navbar.scrolled {
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.98) !important;
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link.active {
+    color: #00b4ff !important;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #00b4ff;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* ===== Skill Bar Animations ===== */
+.progress-bar {
+    transition: width 1.5s ease-in-out !important;
+}
+
+/* ===== Mobile Optimizations ===== */
+@media (max-width: 768px) {
+    #custom-cursor {
+        display: none !important;
+    }
+    
+    #particle-canvas {
+        display: none;
+    }
+    
+    .blog-entry:hover {
+        transform: none !important;
+    }
+}
+
+/* ===== Reduced Motion Support ===== */
+@media (prefers-reduced-motion: reduce) {
+    .floating,
+    .fade-in,
+    .fade-in-child,
+    .progress-bar,
+    .zoom-effect {
+        animation: none !important;
+        transition: none !important;
+    }
+}
 @keyframes typing {
   from {
     width: 0;
@@ -135,7 +308,7 @@
 	      </div>
 	    </div>
 	  </nav>
-	  <section id="home-section" class="hero">
+	  <section id="home-section" class="hero fade-in">
 		  <div class="home-slider  owl-carousel">
 	       <div class="slider-item ">
 	      	<div class="overlay"></div>
@@ -203,7 +376,7 @@
 
 
 
-    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
+    <section class="ftco-about img ftco-section ftco-no-pb fade-in" id="about-section">
     	<div class="container">
 			<div class="row">
 				<div class="row d-flex align-items-stretch">
@@ -214,21 +387,21 @@
 								<div class="row">
 									<div class="col-sm-6 col-md-5">
 									  <div class="about-img">
-										<img src="images/about-me.jpg" class="img-fluid rounded b-shadow-a" alt="">
+										<img src="images/about-me.jpg" class="img-fluid rounded b-shadow-a floating" alt="">
 									  </div>
 									</div>
 									<!-- Details next to profile image -->
 									<div class="col-sm-6 col-md-7">
 									  <div class="about-info">
 										<p><span class="title-s">Name: </span> <span>Manav Kumar</span></p>
-										<p><span class="title-s">Role: </span> <span>Data Analytics & Data Science</span></p>
-										<p><span class="title-s">Experience: </span> <span>6 months</span></p>
+										<!-- <p><span class="title-s">Role: </span> <span>Data Analytics & Data Science</span></p> -->
+										<p><span class="title-s">Experience: </span> <span>10 months</span></p>
 										<p><span class="title-s">Address: </span> <span>Mumbai, India</span></p>
 									  </div>
 									</div>
 								  </div>
 
-								<div class="skill-mf">
+								<!-- <div class="skill-mf">
 									<p class="title-s">Skills</p>
 									<span>Frameworks</span> <span class="pull-right">80%</span>
 									<div class="progress">
@@ -269,28 +442,29 @@
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
+						</div> -->
+					<!-- </div> -->
 					
 					<div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
 						<div class="row justify-content-start pb-3">
 							<div class="col-md-12 heading-section ftco-animate">
 								
-								<h1 class="big">About</h1>
-								<h2 class="mb-4">About Me</h2>
+								<h1 class="big fade-in-child">About</h1>
+								<h2 class="mb-4 fade-in-child">About Me</h2>
 								
 								<p> AI-driven Data Scientist specializing in transforming data into actionable insights and building intelligent systems.
-									 Passionate about exploring cutting-edge technologies like RAG and LLMs to create innovative solutions.🚀</p>
+									 Passionate about exploring cutting-edge technologies like RAG and LLMs to create innovative solutions.</p>
 								<ul class="about-info mt-4 px-md-0 px-2">
 									<li class="d-flex"><span>Profile:</span> <span>
 										  AI-Driven Data Scientist |  Generative AI Explorer
 										</span></li>
 									<li class="d-flex"><span>Education:</span> <span>Bachelor's in Computer Science</span></li>
-									<li class="d-flex"><span>Languages:</span> <span>Python , MY SQL </span></li>
-									<li class="d-flex"><span>Frameworks:</span> <span>Pandas, Numpy, Matplotlib, Seaborn</span></li>
+									<li class="d-flex"><span>Languages:</span> <span>Python, SQL(MySQL), R, Java </span></li>
+									<li class="d-flex"><span>Data Analysis & Libraries::</span> <span>Pandas, NumPy, Matplotlib, Seaborn, Data Cleaning, Data Wrangling, Feature Engineering, A/B Testing</span></li>
 									<li class="d-flex"><span>Tools:</span> <span>Power BI, Tableau, Microsoft Excel </span></li>
-									<li class="d-flex"><span>ML/DL:</span><span>Scikit-learn, Tensorflow , Image Processing , Neural Networks </span></li>
-									<li class="d-flex"><span>Gen AI:</span><span>RAG , Chatbot , LLM</span></li>
+									<li class="d-flex"><span>Data Warehousing & Concepts:</span> <span>Data Warehousing, ETL Processes, Data Modeling, Star Schema, Snowflake Schema </span></li>
+									<li class="d-flex"><span>ML/DL:</span><span>Scikit-learn, Tensorflow, Image Processing, Neural Networks </span></li>
+									<li class="d-flex"><span>Gen AI:</span><span>RAG (Retrieval-Augmented Generation), Chatbot, LLM</span></li>
 									<li class="d-flex"><span>Other Skills:</span><span>Agile methodology, Problem-solving, Critical Thinking, Communication,
 										Leadership, Team Collaboration
 										</span></li>
@@ -318,7 +492,7 @@
 
 
 
-    <section class="ftco-section ftco-no-pb" id="resume-section">
+    <section class="ftco-section ftco-no-pb fade-in" id="resume-section">
     	<div class="container">
     		<div class="row justify-content-center pb-5">
           <div class="col-md-10 heading-section text-center ftco-animate">
@@ -329,7 +503,7 @@
         </div>
 		<div class="row justify-content-center mt-5">
 			<div class="col-md-6 text-center ftco-animate">
-				<p><a href="https://drive.google.com/file/d/11xk9EK-DA2aWbSZxWWOG6BrEgRmBANQU/view?usp=drive_link" class="btn btn-primary py-4 px-5">Download CV</a></p>
+				<p><a href="https://drive.google.com/file/d/13omVfyASArHrKAANND3B1kWBQLuLpPiy/view?usp=drive_link" class="btn btn-primary py-4 px-5">Download CV</a></p>
 			</div>
 		</div>
 	</div>
@@ -344,7 +518,7 @@
 		
 			<div class="row">
     			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
+    				<div class="resume-wrap ftco-animate fade-in-child" >
     					<span class="date">2021-2024</span>
     					<h2>Bachelor's in Computer Science</h2>
     					<span class="position">Sies College of Arts Science And Commerece</span>
@@ -352,7 +526,7 @@
     			</div>
 
     			<div class="col-md-6">
-    				<div class="resume-wrap ftco-animate">
+    				<div class="resume-wrap ftco-animate fade-in-child">
     					<span class="date">2019-2021</span>
     					<h2>Higher Secondary School</h2>
     					<span class="position">St.Xaviers High School and Junior College</span>
@@ -363,7 +537,7 @@
 
    
 
-    <section class="ftco-section" id="project-section">
+    <section class="ftco-section fade-in" id="project-section">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-7 heading-section text-center ftco-animate">
@@ -374,7 +548,7 @@
         </div>
         <div class="row d-flex">
           <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
+          	<div class="blog-entry justify-content-end fade-in-child">
               <a href="https://huggingface.co/spaces/Manavkumar14/Loan_Status_Prediction" class="block-20 zoom-effect" style="background-image: url('images/proj_1.jpg');">
               </a>
               <div class="text mt-3 float-right d-block">
@@ -385,7 +559,7 @@
             </div>
           </div>
           <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
+          	<div class="blog-entry justify-content-end fade-in-child">
               <a href="https://github.com/ManavKumar5/Customer-Satisfaction-Prediction" class="block-20 zoom-effect" style="background-image: url('images/proj_2.jpg');">
               </a>
               <div class="text mt-3 float-right d-block">
@@ -397,7 +571,7 @@
           </div>
         
 		<div class="col-md-4 d-flex ftco-animate">
-			<div class="blog-entry justify-content-end">
+			<div class="blog-entry justify-content-end fade-in-child">
 			<a href="https://github.com/ManavKumar5/Google-Playstore-Sentiment-Analysis" class="block-20 zoom-effect" style="background-image: url('images/proj_3.jpg');">
 			</a>
 			<div class="text mt-3 float-right d-block">
@@ -410,7 +584,7 @@
 	<br>  
 		
 			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
+				<div class="blog-entry justify-content-end fade-in-child">
 				<a href="https://github.com/ManavKumar5/TCS-Closing-Price-Prediction" class="block-20 zoom-effect" style="background-image: url('images/proj_4.jpg');">
 				</a>
 				<div class="text mt-3 float-right d-block">
@@ -422,7 +596,7 @@
 			  </div>
 			</div>
 			<div class="col-md-4 d-flex ftco-animate">
-				<div class="blog-entry justify-content-end">
+				<div class="blog-entry justify-content-end fade-in-child">
 				<a href="https://github.com/ManavKumar5/Face-Mask-Detection" class="block-20 zoom-effect" style="background-image: url('images/proj_5.jpg');">
 				</a>
 				<div class="text mt-3 float-right d-block">
@@ -455,7 +629,7 @@
 
 
 
-    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+    <section class="ftco-section contact-section ftco-no-pb fade-in" id="contact-section">
       <div class="container">
       	<div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
@@ -481,7 +655,7 @@
           			<span class="icon-phone2"></span>
           		</div>
           		<h3 class="mb-4">Contact Number</h3>
-	            <p><a href="tel://+911234567890">+ 9892662178</a></p>
+	            <p><a href="tel://+911234567890">+91 9892662178</a></p>
 	          </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex ftco-animate">
@@ -499,7 +673,7 @@
           			<span class="icon-globe"></span>
           		</div>
           		<h3 class="mb-4">Download Resume</h3>
-	            <p><a href="https://drive.google.com/file/d/11xk9EK-DA2aWbSZxWWOG6BrEgRmBANQU/view?usp=drive_link">Resume Link</a></p>
+	            <p><a href="https://drive.google.com/file/d/13omVfyASArHrKAANND3B1kWBQLuLpPiy/view?usp=drive_link">Resume Link</a></p>
 	          </div>
           </div>
 
@@ -556,6 +730,12 @@
   <script src="js/aos.js"></script>
   <script src="js/jquery.animateNumber.min.js"></script>
   <script src="js/scrollax.min.js"></script>
+
+  <script async src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.module.js"></script>
+  
+  <!-- Custom Interactive Scripts -->
+  <script type="module" src="js/particles.js" defer></script>
+  <script src="js/interactive.js" defer></script>
   
   <script src="js/main.js"></script>
     
