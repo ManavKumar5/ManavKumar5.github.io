@@ -25,265 +25,7 @@
 
 
 
-<style>
 
-
-/*======================================
-//--//-->   ABOUT
-======================================*/
-  /* Custom cursor */
-    #custom-cursor {
-        position: fixed;
-        width: 20px;
-        height: 20px;
-        border: 2px solid rgba(0, 180, 255, 0.8);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s, height 0.2s, background 0.2s;
-        mix-blend-mode: difference;
-    }
-    
-    #custom-cursor.hover {
-        width: 40px;
-        height: 40px;
-        background: rgba(0, 180, 255, 0.1);
-        border-color: #00b4ff;
-    }
-    
-    /* Smooth scroll */
-    html {
-        scroll-behavior: smooth;
-    }
-    
-    /* Enhanced project cards */
-    .project-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .project-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(0, 180, 255, 0.1), transparent);
-        transition: left 0.5s;
-    }
-    
-    .project-card:hover::before {
-        left: 100%;
-    }
-    
-    .project-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-    
-    /* Enhanced buttons */
-    .btn {
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 180, 255, 0.3);
-    }
-    
-    /* Fade-in animations */
-    .fade-in {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    .fade-in.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    /* Navigation enhancement */
-    .navbar {
-        backdrop-filter: blur(10px);
-        background: rgba(255, 255, 255, 0.95) !important;
-    }
-    
-    .dark-mode .navbar {
-        background: rgba(17, 24, 39, 0.95) !important;
-    }
-
-
-.about-mf .box-shadow-full {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
-
-.about-mf .about-img {
-  margin-bottom: 2rem;
-}
-
-.about-mf .about-img img {
-  margin-left: 10px;
-}
-
-
-.skill-mf .progress {
-  /* background-color: #cde1f8; */
-  margin: .5rem 0 1.2rem 0;
-  border-radius: 0;
-  height: .7rem;
-}
-
-.skill-mf .progress .progress-bar {
-  height: .7rem;
-  background-color: #ffbd39;
-}
-
-
-/* Animation styles */
-#typing-animation {
-  position: relative;
-  font-size: 30px;
-  font-weight: bold;
-  color: rgb(255, 255, 255);
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 3s steps(20, end) infinite;
-}
-
-
-#typing-animation:before {
-  content: "";
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: #ccc;
-  animation: typing-cursor 0.5s ease-in-out infinite;
-}
-/* ===== Enhanced Animations ===== */
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-.floating {
-    animation: float 3s ease-in-out infinite;
-}
-
-/* ===== Particle Canvas ===== */
-#particle-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.5;
-}
-
-/* ===== Enhanced Navigation ===== */
-.navbar.scrolled {
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 0.98) !important;
-}
-
-.nav-link {
-    position: relative;
-}
-
-.nav-link.active {
-    color: #00b4ff !important;
-}
-
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: #00b4ff;
-    animation: slideIn 0.3s ease;
-}
-
-@keyframes slideIn {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-/* ===== Skill Bar Animations ===== */
-.progress-bar {
-    transition: width 1.5s ease-in-out !important;
-}
-
-/* ===== Mobile Optimizations ===== */
-@media (max-width: 768px) {
-    #custom-cursor {
-        display: none !important;
-    }
-    
-    #particle-canvas {
-        display: none;
-    }
-    
-    .blog-entry:hover {
-        transform: none !important;
-    }
-}
-
-/* ===== Reduced Motion Support ===== */
-@media (prefers-reduced-motion: reduce) {
-    .floating,
-    .fade-in,
-    .fade-in-child,
-    .progress-bar,
-    .zoom-effect {
-        animation: none !important;
-        transition: none !important;
-    }
-}
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes typing-cursor {
-  from {
-    width: 5px;
-  }
-  to {
-    width: 0;
-  }
-}
-
-
-/* project image zoom effect */
-
-.zoom-effect {
-  overflow: hidden;
-  transition: transform 0.3s ease-out;
-}
-
-.zoom-effect:hover {
-  transform: scale(1.1);
-}
-
-
-</style>
 
 
   </head>
@@ -549,15 +291,28 @@
         <div class="row d-flex">
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end fade-in-child">
+              <a href="https://huggingface.co/spaces/Manavkumar14/ML_Automation" class="block-20 zoom-effect" style="">
+              </a>
+              <div class="text mt-3 float-right d-block">
+
+                 <h3 class="heading"><a href="https://huggingface.co/spaces/Manavkumar14/ML_Automation">ML Automation </a></h3>
+                <p>Designed and deployed a full-stack automated machine learning pipeline for CSV-based datasets, incorporating preprocessing, feature engineering, and model training. Integrated performance metrics for both classification (accuracy) and regression (RMSE) into a multi-page user interface, enhancing usability and streamlining interaction. Utilized Python, Pandas, NumPy, Matplotlib, Scikit-learn, and Streamlit.</p>
+              </div>
+            </div>
+          </div>
+		   <!-- new  -->
+		  <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end fade-in-child">
               <a href="https://huggingface.co/spaces/Manavkumar14/Loan_Status_Prediction" class="block-20 zoom-effect" style="background-image: url('images/proj_1.jpg');">
               </a>
               <div class="text mt-3 float-right d-block">
 
-                 <h3 class="heading"><a href="https://huggingface.co/spaces/Manavkumar14/Loan_Status_Prediction">Loan Status Prediction</a></h3>
-                <p>Developed a classification model to predict the status of loan applications, determining whether a loan will be approved or not. This analysis aids in automating loan approval processes. </p>
+                <h3 class="heading"><a href="https://huggingface.co/spaces/Manavkumar14/Loan_Status_Prediction">Loan Status Prediction</a></h3>
+                <p>Developed a classification model to predict loan approval status, enabling automated and data-driven decision-making in the loan approval process.</p>
               </div>
             </div>
           </div>
+
           <div class="col-md-4 d-flex ftco-animate">
           	<div class="blog-entry justify-content-end fade-in-child">
               <a href="https://github.com/ManavKumar5/Customer-Satisfaction-Prediction" class="block-20 zoom-effect" style="background-image: url('images/proj_2.jpg');">
